@@ -2,7 +2,7 @@
  * API client for the FastAPI backend
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://threedpharma-backend.onrender.com';
 
 /**
  * Generic fetch wrapper with error handling
