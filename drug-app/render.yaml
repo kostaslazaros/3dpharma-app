@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: drug-compatibility-app
+    env: python
+    buildCommand: pip install -r requirements.txt && python scripts/download_databases.py
+    startCommand: streamlit run app.py --server.port=$PORT --server.address=0.0.0.0
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false  # Set this in Render dashboard
+      - key: ENABLE_OPENFDA_DATA
+        value: "true"  # Keep full OpenFDA dataset; set to false only if memory constrained
+    plan: pro
+

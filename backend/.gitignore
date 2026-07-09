@@ -1,0 +1,35 @@
+# Environment variables (contains API keys!)
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+
+# Large data files (download from Google Drive)
+comprehensive_drug_database_compact.json
+comprehensive_drug_database.json
+OpenFDAfull.json
+
+# Analysis output files (can be regenerated)
+all_interactions_classified.csv
+severe_interactions.csv
+minor_interactions.csv
+interaction_severities.json
+interaction_patterns.csv
+risk_phrases.csv
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

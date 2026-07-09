@@ -1,0 +1,409 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Drug Compatibility Checker - Stunning Scientific Design System */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@layer base {
+  :root {
+    /* Scientific blue aesthetics */
+    --background: 220 20% 98%;
+    --foreground: 220 30% 10%;
+
+    --card: 220 15% 99%;
+    --card-foreground: 220 30% 10%;
+
+    --popover: 220 15% 99%;
+    --popover-foreground: 220 30% 10%;
+
+    /* Scientific blue primary */
+    --primary: 217 91% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Slate blue secondary */
+    --secondary: 214 32% 93%;
+    --secondary-foreground: 220 25% 15%;
+
+    --muted: 214 25% 93%;
+    --muted-foreground: 220 15% 42%;
+
+    /* Cyan-blue accent */
+    --accent: 199 89% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Status colors - Clinical precision */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 0%;
+
+    --info: 217 90% 55%;
+    --info-foreground: 0 0% 100%;
+
+    --border: 214 28% 88%;
+    --input: 214 28% 88%;
+    --ring: 217 91% 45%;
+
+    --radius: 0.75rem;
+
+    /* Scientific blue gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 45%), hsl(199 89% 48%));
+    --gradient-accent: linear-gradient(135deg, hsl(217 85% 50%), hsl(199 85% 42%));
+    --gradient-card: linear-gradient(180deg, hsl(220 15% 99%) 0%, hsl(220 20% 96%) 100%);
+    --gradient-hero: radial-gradient(ellipse at 50% 0%, hsl(217 91% 45% / 0.1) 0%, transparent 60%);
+    --gradient-glow: radial-gradient(circle, hsl(217 91% 45% / 0.08) 0%, transparent 70%);
+    
+    --shadow-card: 0 1px 3px hsl(220 30% 10% / 0.06), 0 1px 2px hsl(220 30% 10% / 0.04);
+    --shadow-hover: 0 4px 12px hsl(217 91% 45% / 0.18), 0 2px 4px hsl(220 30% 10% / 0.06);
+    --shadow-elevated: 0 10px 40px -10px hsl(220 30% 10% / 0.2);
+    --shadow-glow: 0 0 30px hsl(217 91% 45% / 0.12);
+    --shadow-neon: 0 0 15px hsl(217 91% 45% / 0.2), 0 0 30px hsl(199 89% 48% / 0.12);
+
+    --sidebar-background: 220 15% 99%;
+    --sidebar-foreground: 220 30% 10%;
+    --sidebar-primary: 217 91% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 214 32% 93%;
+    --sidebar-accent-foreground: 220 25% 15%;
+    --sidebar-border: 214 28% 88%;
+    --sidebar-ring: 217 91% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Data value styling */
+  .data-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  /* Selection styling */
+  ::selection {
+    background: hsl(var(--primary) / 0.3);
+    color: inherit;
+  }
+}
+
+@layer components {
+  /* Premium glass card with glow */
+  .glass-card {
+    @apply relative bg-card/80 backdrop-blur-xl border border-border/50 overflow-hidden;
+    box-shadow: var(--shadow-card);
+  }
+
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.03) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .glass-card:hover {
+    box-shadow: var(--shadow-hover);
+    border-color: hsl(var(--primary) / 0.3);
+  }
+
+  /* Science card with animated border */
+  .science-card {
+    @apply relative bg-card border border-border/50 overflow-hidden;
+    box-shadow: var(--shadow-card);
+  }
+
+  .science-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.5), transparent 50%, hsl(var(--accent) / 0.3));
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .science-card:hover::before {
+    opacity: 1;
+  }
+
+  .science-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: hsl(var(--card));
+    z-index: -1;
+    border-radius: inherit;
+  }
+
+  /* Data panel with subtle scan line effect */
+  .data-panel {
+    @apply relative bg-muted/30 border border-border/50 rounded-lg p-4;
+    background: linear-gradient(180deg, hsl(var(--muted) / 0.3) 0%, hsl(var(--muted) / 0.1) 100%);
+  }
+
+  .data-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      hsl(var(--primary) / 0.02) 2px,
+      hsl(var(--primary) / 0.02) 4px
+    );
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  /* Premium gradient text */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-accent {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Animated gradient border */
+  .gradient-border {
+    position: relative;
+    background: hsl(var(--card));
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: var(--gradient-primary);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    border-radius: inherit;
+  }
+
+  /* Status indicators with glow */
+  .status-indicator {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold tracking-wide;
+  }
+
+  .status-safe {
+    @apply bg-success/15 text-success border border-success/30;
+    box-shadow: 0 0 12px hsl(var(--success) / 0.2);
+  }
+
+  .status-warning {
+    @apply bg-warning/15 text-warning border border-warning/30;
+    box-shadow: 0 0 12px hsl(var(--warning) / 0.2);
+  }
+
+  .status-danger {
+    @apply bg-destructive/15 text-destructive border border-destructive/30;
+    box-shadow: 0 0 12px hsl(var(--destructive) / 0.2);
+  }
+
+  .status-info {
+    @apply bg-info/15 text-info border border-info/30;
+    box-shadow: 0 0 12px hsl(var(--info) / 0.2);
+  }
+
+  /* Hero gradient background */
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+
+  /* Neon glow effect */
+  .neon-glow {
+    box-shadow: var(--shadow-neon);
+  }
+
+  .neon-text {
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.5), 0 0 20px hsl(var(--primary) / 0.3);
+  }
+
+  /* Scientific label */
+  .sci-label {
+    @apply text-[10px] uppercase tracking-[0.15em] font-semibold text-muted-foreground;
+  }
+
+  /* Research badge with pulse */
+  .research-badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.15), hsl(var(--accent) / 0.1));
+    border: 1px solid hsl(var(--primary) / 0.3);
+    color: hsl(var(--primary));
+  }
+
+  .research-badge::before {
+    content: '';
+    @apply w-1.5 h-1.5 rounded-full bg-primary animate-pulse;
+  }
+
+  /* Holographic effect */
+  .holographic {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary) / 0.1) 0%,
+      hsl(var(--accent) / 0.1) 25%,
+      hsl(var(--info) / 0.1) 50%,
+      hsl(var(--primary) / 0.1) 75%,
+      hsl(var(--accent) / 0.1) 100%
+    );
+    background-size: 400% 400%;
+    animation: holographic 8s ease infinite;
+  }
+
+  /* Molecular background pattern */
+  .molecular-bg {
+    background-image: 
+      radial-gradient(circle at 20% 80%, hsl(var(--primary) / 0.03) 0%, transparent 25%),
+      radial-gradient(circle at 80% 20%, hsl(var(--accent) / 0.03) 0%, transparent 25%),
+      radial-gradient(circle at 1px 1px, hsl(var(--border) / 0.5) 1px, transparent 0);
+    background-size: 100% 100%, 100% 100%, 24px 24px;
+  }
+
+  /* Scan line animation */
+  .scan-line::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.5), transparent);
+    animation: scan 3s linear infinite;
+  }
+
+  /* Stats card with value highlight */
+  .stat-card {
+    @apply relative overflow-hidden;
+  }
+
+  .stat-card .stat-value {
+    @apply text-3xl font-bold tracking-tight;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Input with glow focus */
+  .input-glow:focus {
+    box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2), 0 0 20px hsl(var(--primary) / 0.1);
+  }
+
+  /* Button with shine effect */
+  .btn-shine {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-shine::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .btn-shine:hover::before {
+    left: 100%;
+  }
+}
+
+@keyframes holographic {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes scan {
+  0% { top: -10%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 110%; opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(1deg); }
+  75% { transform: translateY(5px) rotate(-1deg); }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Animations */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, hsl(var(--primary) / 0.1) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, hsl(var(--primary) / 0.5), hsl(var(--accent) / 0.5));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, hsl(var(--primary) / 0.7), hsl(var(--accent) / 0.7));
+}
+
+/* Focus visible improvements */
+:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
