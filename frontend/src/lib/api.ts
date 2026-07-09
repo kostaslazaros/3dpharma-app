@@ -2,7 +2,7 @@
  * API client for the FastAPI backend
  */
 
-const API_BASE_URL = 'https://threedpharma-backend.onrender.com';
+export const API_BASE_URL = 'https://threedpharma-backend.onrender.com';
 
 /**
  * Generic fetch wrapper with error handling

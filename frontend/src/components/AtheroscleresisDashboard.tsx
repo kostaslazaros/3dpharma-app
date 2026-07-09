@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import * as Recharts from "recharts";
+import { API_BASE_URL } from "@/lib/api";
 
 // ═══════════════════════════════════════════════════════════════════════════════
 //  DATA (precomputed from athero_nlp_with_relationships.json — 7,905 papers)
@@ -599,7 +600,7 @@ const AIAgentPage = () => {
     setResponse(null);
     
     try {
-      const res = await fetch("http://localhost:8000/athero/query", {
+      const res = await fetch(`${API_BASE_URL}/athero/query`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query, num_sources: 5 })
